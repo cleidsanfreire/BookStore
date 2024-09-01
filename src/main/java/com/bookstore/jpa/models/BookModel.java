@@ -26,7 +26,7 @@ public class BookModel implements Serializable {
     private PublisherModel publisher;
 
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne //(fetch = FetchType.LAZY)
+    @ManyToMany //(fetch = FetchType.LAZY)
     @JoinTable(name= "tb_book_author", joinColumns = @JoinColumn(name = "book_id"),inverseJoinColumns = @JoinColumn(name="author_id"))
     private Set<AuthorModel> authors = new HashSet<>();
 
