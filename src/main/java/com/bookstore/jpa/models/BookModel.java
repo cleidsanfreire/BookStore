@@ -21,14 +21,17 @@ public class BookModel implements Serializable {
     private String title;
 
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne //(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name= "publisher_id")
     private PublisherModel publisher;
 
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToMany //(fetch = FetchType.LAZY)
+    @ManyToMany//(fetch = FetchType.LAZY)
     @JoinTable(name= "tb_book_author", joinColumns = @JoinColumn(name = "book_id"),inverseJoinColumns = @JoinColumn(name="author_id"))
     private Set<AuthorModel> authors = new HashSet<>();
+
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+    private ReviewModel review;
 
     public UUID getId() {
         return id;
@@ -60,5 +63,13 @@ public class BookModel implements Serializable {
 
     public void setAuthors(Set<AuthorModel> authors) {
         this.authors = authors;
+    }
+
+    public ReviewModel getReview() {
+        return review;
+    }
+
+    public void setReview(ReviewModel review) {
+        this.review = review;
     }
 }
