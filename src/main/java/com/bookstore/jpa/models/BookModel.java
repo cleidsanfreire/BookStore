@@ -53,4 +53,12 @@ public class BookModel implements Serializable {
     public void setPublisher(PublisherModel publisher) {
         this.publisher = publisher;
     }
+
+    public Set<AuthorModel> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<AuthorModel> authors) {
+        this.authors = authors;
+    }
 }
